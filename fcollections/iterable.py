@@ -7,6 +7,11 @@ NO_ARGUMENT_PASSED = object()
 
 import fcollections
 
+try:
+    import collections.abc as abccollections # python3
+except ImportError:
+    import collections as abccollections # python2
+
 class Iterable(object):
     def __init__(self, iterable):
         self._iterable = iterable
@@ -118,6 +123,21 @@ class Iterable(object):
 
     def dropuntil(self, predicate):
         return self.dropwhile(lambda x: not predicate(x))
+
+    def flatten(self, limit=1):
+        def helper(iterable, limit):
+            if limit == 0:
+                for item in iterable:
+                    yield item
+                return
+            for item in iterable:
+                if isinstance(item, abccollections.Iterable):
+                    # no yield from in python2, sorry
+                    for flattened_item in helper(item, limit-1 if limit is not None else None):
+                        yield flattened_item
+                else:
+                    yield item
+        return Iterable(helper(self, limit=limit))
 
     def unique(self):
         def helper(sequence):

@@ -94,6 +94,11 @@ class IterableTest(unittest.TestCase):
     def test_dropuntil(self):
         self.checkResult(self.data.dropuntil(lambda x: x == 1), [1])
 
+    def test_flatten(self):
+        self.checkResult(Iterable([[1, 2], 3, [4, 5]]).flatten(), [1, 2, 3, 4, 5])
+        self.checkResult(Iterable([[[1]], [2]]).flatten(), [[1], 2])
+        self.checkResult(Iterable([[[[[1]]]], [[[2]]]]).flatten(limit=None), [1, 2])
+
     def test_unique(self):
         self.checkResult(self.data.unique(), [5, 2, 3, 1])
 

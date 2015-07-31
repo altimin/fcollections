@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='fcollections',
-    version='0.1.1dev',
+    version='0.2.0dev0',
     description='functional collections for python',
     packages=['fcollections'],
     test_suite='tests',
