@@ -1,3 +1,6 @@
+[<img src="https://travis-ci.org/altimin/fcollections.svg?branch=master"/>](https://travis-ci.org/altimin/fcollections)
+
+
 # fcollections - functional collections for python
 
 Motivation behind this library is to write long chain of map/filter sequence transformations without pain. To achieve that this library provides wrappers around standard python collections with additional methods defined.
