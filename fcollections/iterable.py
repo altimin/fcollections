@@ -3,8 +3,6 @@ from __future__ import division
 from collections import Counter
 from collections import defaultdict
 
-NO_ARGUMENT_PASSED = object()
-
 import fcollections
 
 try:
@@ -44,9 +42,9 @@ class Iterable(object):
     def doublestarmap(self, func):
         return Iterable(func(**item) for item in self)
 
-    def reduce(self, func, initial=NO_ARGUMENT_PASSED):
+    def reduce(self, func, initial=fcollections.utils.NO_ARGUMENT_PASSED):
         iterator = iter(self)
-        if initial is not NO_ARGUMENT_PASSED:
+        if initial is not fcollections.utils.NO_ARGUMENT_PASSED:
             value = initial
         else:
             try:
@@ -90,8 +88,11 @@ class Iterable(object):
     def all(self):
         return all(self)
 
-    def sum(self):
-        return sum(self)
+    def none(self):
+        return not self.any()
+
+    def sum(self, start=0):
+        return sum(self, start)
 
     def take(self, count):
         return Iterable(item for i, item in enumerate(self) if i < count)

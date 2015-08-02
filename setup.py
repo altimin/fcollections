@@ -9,7 +9,8 @@ setup(
     license='WTFPL',
     author='Alexander Timin',
     author_email='alexander@timin.me',
-    url='https://github.com/altimin/fcollections'
+    url='https://github.com/altimin/fcollections',
+    install_requires=['six']
 )
 
 
